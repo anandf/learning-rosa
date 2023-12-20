@@ -3,12 +3,25 @@
 ## Prerequisites
 - terraform or tofu binary
 - oc
-- kubectl
-- OpenShift Local (CRC)
+- OpenShift Local (CRC) (if testing it locally on a laptop)
 
-## Create resources for DevSpaces
+## Run the terraform scripts to install the OpenShift GitOps Operator
+```
+git clone git@github.com:anandf/learning-rosa.git
+cd learning-rosa/terraform
+```
+```
+terraform init
+terraform apply -auto-approve
+```
+#### or
+```
+tofu init
+tofu apply -auto-approve
+```
+## Create resources for DevSpaces using GitOps
 
-## login to argocd
+## Login to argocd instance
 ```
 GITOPS_HOST=$(oc get routes -n openshift-gitops openshift-gitops-server -o jsonpath='{.status.ingress[0].host}')
 GITOPS_PASSWORD=$(oc get secret -n openshift-gitops openshift-gitops-cluster -o jsonpath='{.data.admin\.password}' | base64 -d)
